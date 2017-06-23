@@ -1,0 +1,168 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|ARM">
+      <Configuration>Debug</Configuration>
+      <Platform>ARM</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|ARM">
+      <Configuration>Release</Configuration>
+      <Platform>ARM</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|ARM64">
+      <Configuration>Debug</Configuration>
+      <Platform>ARM64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|ARM64">
+      <Configuration>Release</Configuration>
+      <Platform>ARM64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="KTL.Algorithm.h" />
+    <ClInclude Include="KTL.Characters.h" />
+    <ClInclude Include="KTL.Containers.List.h" />
+    <ClInclude Include="KTL.Containers.ListNode.h" />
+    <ClInclude Include="KTL.Containers.Tuple.h" />
+    <ClInclude Include="KTL.Functional.Bind.h" />
+    <ClInclude Include="KTL.Functional.Function.h" />
+    <ClInclude Include="KTL.Functional.h" />
+    <ClInclude Include="KTL.h" />
+    <ClInclude Include="KTL.Iterators.h" />
+    <ClInclude Include="KTL.Iterators.ListIterator.h" />
+    <ClInclude Include="KTL.Iterators.NormalIterator.h" />
+    <ClInclude Include="KTL.Macro.Float.h" />
+    <ClInclude Include="KTL.Macro.h" />
+    <ClInclude Include="KTL.Memory.Allocator.h" />
+    <ClInclude Include="KTL.Memory.AllocatorTraits.h" />
+    <ClInclude Include="KTL.Memory.h" />
+    <ClInclude Include="KTL.Memory.MemoryResource.h" />
+    <ClInclude Include="KTL.Memory.New.h" />
+    <ClInclude Include="KTL.Memory.SharedPtr.h" />
+    <ClInclude Include="KTL.Memory.SmartPointerBase.h" />
+    <ClInclude Include="KTL.Memory.WeakPtr.h" />
+    <ClInclude Include="KTL.Strings.Formator.h" />
+    <ClInclude Include="KTL.Strings.h" />
+    <ClInclude Include="KTL.Strings.String.h" />
+    <ClInclude Include="KTL.Type.AlignedBuffer.h" />
+    <ClInclude Include="KTL.Type.FloatPointer.h" />
+    <ClInclude Include="KTL.Type.h" />
+    <ClInclude Include="KTL.Iterators.IteratorTraits.h" />
+    <ClInclude Include="KTL.Type.PointerTraits.h" />
+    <ClInclude Include="KTL.Type.TypeTraits.h" />
+    <ClInclude Include="KTL.Type.Uitility.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="KTL.Containers.ListNode.cpp" />
+    <ClCompile Include="KTL.Memory.cpp" />
+    <ClCompile Include="KTL.Memory.MemoryResource.cpp" />
+    <ClCompile Include="KTL.Memory.New.cpp" />
+    <ClCompile Include="KTL.Type.Uitility.cpp" />
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{C740164F-02EF-4DF7-BEA2-3042FD9823EC}</ProjectGuid>
+    <TemplateGuid>{0a049372-4c4d-4ea0-a64e-dc6ad88ceca1}</TemplateGuid>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <MinimumVisualStudioVersion>12.0</MinimumVisualStudioVersion>
+    <Configuration>Debug</Configuration>
+    <Platform Condition="'$(Platform)' == ''">Win32</Platform>
+    <RootNamespace>KTL</RootNamespace>
+    <DriverType>KMDF</DriverType>
+    <WindowsTargetPlatformVersion>$(LatestTargetPlatformVersion)</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <TargetVersion>Windows10</TargetVersion>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>WindowsKernelModeDriver10.0</PlatformToolset>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <TargetVersion>Windows10</TargetVersion>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>WindowsKernelModeDriver10.0</PlatformToolset>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <TargetVersion>Windows10</TargetVersion>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>WindowsKernelModeDriver10.0</PlatformToolset>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <TargetVersion>Windows10</TargetVersion>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>WindowsKernelModeDriver10.0</PlatformToolset>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'" Label="Configuration">
+    <TargetVersion>Windows10</TargetVersion>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>WindowsKernelModeDriver10.0</PlatformToolset>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'" Label="Configuration">
+    <TargetVersion>Windows10</TargetVersion>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>WindowsKernelModeDriver10.0</PlatformToolset>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM64'" Label="Configuration">
+    <TargetVersion>Windows10</TargetVersion>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>WindowsKernelModeDriver10.0</PlatformToolset>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM64'" Label="Configuration">
+    <TargetVersion>Windows10</TargetVersion>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>WindowsKernelModeDriver10.0</PlatformToolset>
+    <ConfigurationType>StaticLibrary</ConfigurationType>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(SolutionDir)..\Output\$(Configuration)\</OutDir>
+    <IntDir>$(ProjectName).dir\$(Configuration)\$(Platform)\</IntDir>
+    <TargetName>$(TargetName.Replace(' ','')).X86</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>$(SolutionDir)..\Output\$(Configuration)\</OutDir>
+    <IntDir>$(ProjectName).dir\$(Configuration)\$(Platform)\</IntDir>
+    <TargetName>$(TargetName.Replace(' ','')).X86</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutDir>$(SolutionDir)..\Output\$(Configuration)\</OutDir>
+    <IntDir>$(ProjectName).dir\$(Configuration)\$(Platform)\</IntDir>
+    <TargetName>$(TargetName.Replace(' ','')).X64</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>$(SolutionDir)..\Output\$(Configuration)\</OutDir>
+    <IntDir>$(ProjectName).dir\$(Configuration)\$(Platform)\</IntDir>
+    <TargetName>$(TargetName.Replace(' ','')).X64</TargetName>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>

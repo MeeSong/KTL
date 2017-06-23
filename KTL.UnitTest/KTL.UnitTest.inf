@@ -1,0 +1,90 @@
+;
+; KTL.UnitTest.inf
+;
+
+[Version]
+Signature="$WINDOWS NT$"
+Class=Sample ; TODO: edit Class
+ClassGuid={78A1C341-4539-11d3-B88D-00C04FAD5171} ; TODO: edit ClassGuid
+Provider=%ManufacturerName%
+CatalogFile=KTL.UnitTest.cat
+DriverVer= ; TODO: set DriverVer in stampinf property pages
+
+[DestinationDirs]
+DefaultDestDir = 12
+
+; ================= Class section =====================
+
+[ClassInstall32]
+Addreg=SampleClassReg
+
+[SampleClassReg]
+HKR,,,0,%ClassName%
+HKR,,Icon,,-5
+
+[SourceDisksNames]
+1 = %DiskName%,,,""
+
+[SourceDisksFiles]
+KTL.UnitTest.sys  = 1,,
+
+;*****************************************
+; Install Section
+;*****************************************
+
+[Manufacturer]
+%ManufacturerName%=Standard,NT$ARCH$
+
+[Standard.NT$ARCH$]
+%KTL.UnitTest.DeviceDesc%=KTL.UnitTest_Device, Root\KTL.UnitTest ; TODO: edit hw-id
+
+[KTL.UnitTest_Device.NT]
+CopyFiles=Drivers_Dir
+
+[Drivers_Dir]
+KTL.UnitTest.sys
+
+;-------------- Service installation
+[KTL.UnitTest_Device.NT.Services]
+AddService = KTL.UnitTest,%SPSVCINST_ASSOCSERVICE%, KTL.UnitTest_Service_Inst
+
+; -------------- KTL.UnitTest driver install sections
+[KTL.UnitTest_Service_Inst]
+DisplayName    = %KTL.UnitTest.SVCDESC%
+ServiceType    = 1               ; SERVICE_KERNEL_DRIVER
+StartType      = 3               ; SERVICE_DEMAND_START
+ErrorControl   = 1               ; SERVICE_ERROR_NORMAL
+ServiceBinary  = %12%\KTL.UnitTest.sys
+
+;
+;--- KTL.UnitTest_Device Coinstaller installation ------
+;
+
+[DestinationDirs]
+KTL.UnitTest_Device_CoInstaller_CopyFiles = 11
+
+[KTL.UnitTest_Device.NT.CoInstallers]
+AddReg=KTL.UnitTest_Device_CoInstaller_AddReg
+CopyFiles=KTL.UnitTest_Device_CoInstaller_CopyFiles
+
+[KTL.UnitTest_Device_CoInstaller_AddReg]
+HKR,,CoInstallers32,0x00010000, "WdfCoInstaller$KMDFCOINSTALLERVERSION$.dll,WdfCoInstaller"
+
+[KTL.UnitTest_Device_CoInstaller_CopyFiles]
+WdfCoInstaller$KMDFCOINSTALLERVERSION$.dll
+
+[SourceDisksFiles]
+WdfCoInstaller$KMDFCOINSTALLERVERSION$.dll=1 ; make sure the number matches with SourceDisksNames
+
+[KTL.UnitTest_Device.NT.Wdf]
+KmdfService =  KTL.UnitTest, KTL.UnitTest_wdfsect
+[KTL.UnitTest_wdfsect]
+KmdfLibraryVersion = $KMDFVERSION$
+
+[Strings]
+SPSVCINST_ASSOCSERVICE= 0x00000002
+ManufacturerName="<Your manufacturer name>" ;TODO: Replace with your manufacturer name
+ClassName="Samples" ; TODO: edit ClassName
+DiskName = "KTL.UnitTest Installation Disk"
+KTL.UnitTest.DeviceDesc = "KTL.UnitTest Device"
+KTL.UnitTest.SVCDESC = "KTL.UnitTest Service"
