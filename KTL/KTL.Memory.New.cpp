@@ -1,7 +1,9 @@
 #include "KTL.Memory.New.h"
+#include "KTL.Macro.h"
 
-static constexpr ktl::u32 DefaultPoolTag = 'KNew';
-static constexpr POOL_TYPE DefaultPoolType = NonPagedPoolNx;
+
+static constexpr ktl::u32 DefaultPoolTag    = KTL$CompileTime$ByteSwap32$Macro('KNew');
+static constexpr POOL_TYPE DefaultPoolType  = NonPagedPoolNx;
 
 
 //////////////////////////////////////////////////////////////////////////
@@ -20,7 +22,7 @@ void * __cdecl operator new(size_t aSize) NOEXCEPT$TYPE
     {
         return nullptr;
     }
-
+    
     return ExAllocatePoolWithTag(DefaultPoolType, aSize, DefaultPoolTag);
 }
 

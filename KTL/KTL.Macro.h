@@ -20,6 +20,37 @@ char(*KTL$CompileTime$NumberOf$Function(__unaligned T(&)[N]))[N];
 #define KTL$CompileTime$ArraySize$Macro(a) (sizeof(*KTL$CompileTime$NumberOf$Function(a)))
 #endif
 
+// ByteSwap
+
+#ifndef KTL$CompileTime$ByteSwap16$Macro
+#define KTL$CompileTime$ByteSwap16$Macro(x) (       \
+    ((ktl::u16(x) & ktl::u16(0xFF << 8)) >> 8) |    \
+    ((ktl::u16(x) & ktl::u16(0xFF >> 8)) << 8)      \
+)
+#endif
+
+#ifndef KTL$CompileTime$ByteSwap32$Macro
+#define KTL$CompileTime$ByteSwap32$Macro(x) (       \
+    ((ktl::u32(x) & ktl::u32(0xFF << 24)) >> 24) |  \
+    ((ktl::u32(x) & ktl::u32(0xFF << 16)) >>  8) |  \
+    ((ktl::u32(x) & ktl::u32(0xFF <<  8)) <<  8) |  \
+    ((ktl::u32(x) & ktl::u32(0xFF <<  0)) << 24)    \
+)
+#endif
+
+#ifndef KTL$CompileTime$ByteSwap64$Macro
+#define KTL$CompileTime$ByteSwap64$Macro(x) (       \
+    ((ktl::u64(x) & ktl::u64(0xFF << 56)) >> 56) |  \
+    ((ktl::u64(x) & ktl::u64(0xFF << 48)) >> 40) |  \
+    ((ktl::u64(x) & ktl::u64(0xFF << 40)) >> 24) |  \
+    ((ktl::u64(x) & ktl::u64(0xFF << 32)) >>  8) |  \
+    ((ktl::u64(x) & ktl::u64(0xFF << 24)) <<  8) |  \
+    ((ktl::u64(x) & ktl::u64(0xFF << 16)) << 24) |  \
+    ((ktl::u64(x) & ktl::u64(0xFF <<  8)) << 40) |  \
+    ((ktl::u64(x) & ktl::u64(0xFF <<  0)) << 56) |  \
+)
+#endif
+
 // Make word
 #ifndef KTL$CompileTime$MakeWord$Macro
 #define KTL$CompileTime$MakeWord$Macro(a, b)    ((ktl::u16)(((ktl::u8)(((ktl::usize)(a)) & 0xff)) | ((ktl::u16)((ktl::u8)(((ktl::usize)(b)) & 0xff))) << 8))
