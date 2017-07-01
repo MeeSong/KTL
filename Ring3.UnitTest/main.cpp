@@ -67,6 +67,16 @@ auto TestFunction(const ktl::wchar *a) -> void
     LOG("%ws", a);
 }
 
+class TestBindThis
+{
+public:
+    auto Test(const ktl::wchar *a) -> int
+    {
+        LOG("%ws", a);
+        return 0;
+    }
+};
+
 /// Test bind
 
 int TestBind()
@@ -81,9 +91,16 @@ int TestBind()
     auto vBind2(ktl::bind(TestFunctor(), ktl::_1));
     auto vBind3(ktl::bind(TestFunction, ktl::_1));
 
+    TestBindThis vBindThis;
+    auto vBind4(ktl::bind(&TestBindThis::Test, &vBindThis, ktl::_1));
+
     vBind1((L"1 Test Bind Lambda"));
     vBind2((L"2 Test Bind Functor"));
     vBind3((L"3 Test Bind Function"));
+    vBind4((L"4 TestBindThis"));
+
+    const bool vIs = ktl::is_member_function_pointer<typename ktl::decay<decltype(&TestBindThis::Test)>::type>::value;
+    const bool vIs2 = ktl::is_member_object_pointer<typename ktl::decay<decltype(&TestBindThis::Test)>::type>::value;
     
     return 0;
 }
@@ -122,7 +139,7 @@ int TestFunctional()
 
     vFun1(L"5 Test Functional Lambda");
     vFun2(L"6 Test Functional Functor");
-
+    
     return 0;
 }
 

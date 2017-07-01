@@ -537,9 +537,29 @@ namespace ktl
         struct is_function<_ReturnType(_ArgTypes...) const volatile &&>
             : public true_type { };
 
+        /// TEMPLATE CLASS is_member_function_pointer
+
+        template<typename>
+        struct __is_member_function_pointer_impl
+            : public false_type
+        { };
+
+        template<typename _Type, typename _Class>
+        struct __is_member_function_pointer_impl<_Type _Class::*>
+            : public bool_constant<is_function<_Type>::value>
+        {
+            using __class_type = _Class;
+        };
+
+        template<typename _Type>
+        struct is_member_function_pointer
+            : public __is_member_function_pointer_impl<
+            typename remove_cv<_Type>::type>::type
+        { };
+
         /// TEMPLATE CLASS is_member_object_pointer
 
-        template<typename _Type, bool = is_function<_Type>::value>
+        template<typename _Type, bool = is_member_function_pointer<_Type>::value>
         struct __is_member_object_pointer_impl
             : public false_type
         { };
@@ -553,28 +573,7 @@ namespace ktl
 
         template<typename _Type>
         struct is_member_object_pointer
-            : public __is_member_object_pointer_impl<
-            typename remove_cv<_Type>::type>::type
-        { };
-
-        /// TEMPLATE CLASS is_member_function_pointer
-
-        template<typename _Type, bool = is_function<_Type>::value>
-        struct __is_member_function_pointer_impl
-            : public false_type
-        { };
-
-        template<typename _Type, typename _Class>
-        struct __is_member_function_pointer_impl<_Type _Class::*, true>
-            : public true_type
-        {
-            using __class_type = _Class;
-        };
-
-        template<typename _Type>
-        struct is_member_function_pointer
-            : public __is_member_function_pointer_impl<
-            typename remove_cv<_Type>::type>::type
+            : public __is_member_object_pointer_impl<typename remove_cv<_Type>::type>::type
         { };
 
         /// TEMPLATE CLASS is_pointer
